@@ -2,6 +2,7 @@
     "name": "matt182/hexlet-psr-linter",
     "require": {},
     "require-dev": {
+       "phpunit/phpunit": "^5.2",
        "squizlabs/php_codesniffer": "2.*"
      },
     "authors": [

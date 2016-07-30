@@ -1,18 +1,8 @@
 <?php
 
-namespace PhpPackage;
+namespace hexletPsrLinter;
 
 class User
 {
-    private $name;
 
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
 }

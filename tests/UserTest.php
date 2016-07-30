@@ -1,14 +1,11 @@
 <?php
 
-namespace PhpPackage;
+namespace hexletPsrLinter;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetName()
+    public function test()
     {
-        $name = 'john';
-        $user = new User($name);
-
-        $this->assertEquals($name, $user->getName());
+        $this->assertTrue(true);
     }
 }
