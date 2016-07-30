@@ -1,20 +1,18 @@
 {
-  "name": "matt182/hexlet-psr-linter",
-  "bin": ["bin/hexlet-psr-linter"],
-  "type": "library",
-  "require-dev": {
-
-  },
-  "authors": [
-    {
-      "name": "Egor Lebedev",
-      "email": "mattspring0@gmail.com"
+    "name": "matt182/hexlet-psr-linter",
+    "require": {},
+    "require-dev": {
+       "squizlabs/php_codesniffer": "2.*"
+     },
+    "authors": [
+      {
+        "name": "Egor Lebedev",
+        "email": "mmattspring0@gmail.com"
+      }
+    ],
+    "autoload": {
+      "psr-4": {
+        "hexletPsrLinter\\": "src/"
+      }
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "HexletPsrLinter\\": "src/"
-    }
-  },
-  "require": {}
 }
