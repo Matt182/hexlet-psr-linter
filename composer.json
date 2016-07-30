@@ -1,0 +1,21 @@
+{
+  "name": "hexlet/php-package",
+  "bin": ["bin/php-package"],
+  "type": "library",
+  "require-dev": {
+    "phpunit/phpunit": "^5.2",
+    "squizlabs/php_codesniffer": "2.*"
+  },
+  "authors": [
+    {
+      "name": "Kirill Mokevnin",
+      "email": "mokevnin@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PhpPackage\\": "src/"
+    }
+  },
+  "require": {}
+}
