@@ -2,10 +2,23 @@
 
 namespace hexletPsrLinter;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+use function hexletPsrLinter\checkFunctionName;
+
+class CheckersTest extends \PHPUnit_Framework_TestCase
 {
-    public function test()
+    public function testChectFuntionName()
     {
-        $this->assertTrue(true);
+        $testArr = [
+            'camelCase' => true,
+            'CamelCase' => false,
+            'camelcase' => true,
+            'Camelcase' => false,
+            'camelCamelCamel' => true,
+            'camel_case' => false
+        ];
+
+        foreach ($testArr as $key => $val) {
+            $this->assertEquals(checkFunctionName($key), $val);
+        }
     }
 }
