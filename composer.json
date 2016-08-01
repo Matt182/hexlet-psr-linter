@@ -1,5 +1,6 @@
 {
     "name": "matt182/hexlet-psr-linter",
+    "bin": ["bin/hexlet-psr-linter"],
     "require": {},
     "require-dev": {
        "phpunit/phpunit": "5.*",
@@ -10,7 +11,7 @@
     "authors": [
       {
         "name": "Egor Lebedev",
-        "email": "mmattspring0@gmail.com"
+        "email": "mattspring0@gmail.com"
       }
     ],
     "autoload": {
