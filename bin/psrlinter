@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+namespace HexletPsrLinter;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use function HexletPsrLinter\run;
+
+$cmd = new \Commando\Command();
+
+$cmd->option()
+    ->aka('path')
+    ->require()
+    ->describedAs('File path');
+
+run($cmd['path']);
