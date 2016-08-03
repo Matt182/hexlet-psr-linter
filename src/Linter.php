@@ -5,7 +5,8 @@ namespace HexletPsrLinter;
 use HexletPsrLinter\Checkers\FunctionChecker;
 use HexletPsrLinter\Checkers\MethodChecker;
 
-function run(string $path) {
+function run(string $path)
+{
     if (exists($path)) {
         $code = read($path);
     }

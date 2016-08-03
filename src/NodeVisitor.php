@@ -16,7 +16,7 @@ class NodeVisitor extends NodeVisitorAbstract
 
     public function enterNode(Node $node)
     {
-        foreach($this->checkers as $checker) {
+        foreach ($this->checkers as $checker) {
             if ($checker->accept($node)) {
                 $error = $checker->check($node);
                 if (!empty($error)) {

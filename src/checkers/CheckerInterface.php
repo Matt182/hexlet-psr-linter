@@ -5,6 +5,6 @@ use PhpParser\Node;
 
 interface CheckerInterface
 {
-    function accept(Node $node);
-    function check(Node $node);
+    public function accept(Node $node);
+    public function check(Node $node);
 }
