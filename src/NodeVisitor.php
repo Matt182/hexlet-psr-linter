@@ -9,8 +9,9 @@ class NodeVisitor extends NodeVisitorAbstract
     private $result;
     private $checkers;
 
-    public function prepare($checkers)
+    public function __construct($checkers)
     {
+        $this->result = [];
         $this->checkers = $checkers;
     }
 
@@ -28,9 +29,6 @@ class NodeVisitor extends NodeVisitorAbstract
 
     public function getResult()
     {
-        if (empty($this->result)) {
-            return ["Congratulations! no warnings.\n"];
-        }
         return $this->result;
     }
 }

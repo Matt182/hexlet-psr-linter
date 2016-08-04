@@ -27,8 +27,7 @@
             "src/NodeCheckers.php",
             "src/NodeVisitor.php",
             "src/Output.php",
-            "src/Parser.php",
-            "src/Tree.php"
+            "src/Parser.php"
         ]
     },
     "bin": ["bin/psrlinter"]
