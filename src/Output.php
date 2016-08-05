@@ -1,7 +1,7 @@
 <?php
 namespace HexletPsrLinter;
 
-function messageOut($messages)
+function printResult($messages)
 {
     if (empty($messages)) {
         echo "Congratulation! everything is ok.\n";

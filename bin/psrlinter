@@ -13,4 +13,4 @@ $cmd->option()
     ->require()
     ->describedAs('File path');
 
-run($cmd['path']);
+printResult(run($cmd['path']));
