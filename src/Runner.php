@@ -4,9 +4,15 @@ namespace HexletPsrLinter;
 
 function run(string $path)
 {
-    if (exists($path)) {
-        $code = read($path);
-        return lint($code);
+    $files = getFiles($path);
+    if (empty($files)) {
+        throw new \Exception("No files there", 1);
     }
-    throw new Exception("File $path is not exists", 1);
+
+    $linter = new Linter();
+    foreach ($files as $file) {
+        $code = read($file);
+        $linter->sniff($code);
+    }
+    return $linter->getResult();
 }

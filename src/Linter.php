@@ -6,12 +6,24 @@ use HexletPsrLinter\Checkers\FunctionChecker;
 use HexletPsrLinter\Checkers\MethodChecker;
 use PhpParser\NodeTraverser;
 
-function lint(string $code)
+class Linter
 {
-    $checkers = new NodeCheckers();
-    $traverser = new NodeTraverser();
-    $visitor = new NodeVisitor($checkers->get());
-    $traverser->addVisitor($visitor);
-    $traverser->traverse(parse($code));
-    return $visitor->getResult();
+
+    public function __construct()
+    {
+        $checkers = new NodeCheckers();
+        $this->visitor = new NodeVisitor($checkers->get());
+        $this->traverser = new NodeTraverser();
+        $this->traverser->addVisitor($this->visitor);
+    }
+
+    public function sniff($code)
+    {
+        $this->traverser->traverse(parse($code));
+    }
+
+    public function getResult()
+    {
+        return $this->visitor->getResult();
+    }
 }
