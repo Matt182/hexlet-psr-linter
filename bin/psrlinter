@@ -15,6 +15,8 @@ $cmd->option()
 
 try {
     printResult(run($cmd['path']));
+    return 0;
 } catch (Exception $ex) {
     echo $ex->getMessage();
+    return $ex->getCode();
 }

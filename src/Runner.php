@@ -4,9 +4,9 @@ namespace HexletPsrLinter;
 
 function run(string $path)
 {
-    if (exists($path)) {
-        $code = read($path);
+    if (file_exists($path) && pathinfo($path)['extension'] === 'php') {
+        $code = file_get_contents($path);
         return lint($code);
     }
-    throw new Exception("File $path is not exists", 1);
+    throw new \Exception("File $path is not exists", 1);
 }

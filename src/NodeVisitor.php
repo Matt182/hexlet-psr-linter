@@ -9,10 +9,13 @@ class NodeVisitor extends NodeVisitorAbstract
     private $result;
     private $checkers;
 
-    public function __construct($checkers)
+    public function __construct(array $checkers)
     {
         $this->result = [];
-        $this->checkers = $checkers;
+        $this->checkers = [];
+        foreach ($checkers as $checker) {
+            $this->checkers[] = $checker;
+        }
     }
 
     public function enterNode(Node $node)
