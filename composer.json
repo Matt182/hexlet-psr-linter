@@ -25,10 +25,8 @@
         "files": [
             "src/File.php",
             "src/Linter.php",
-            "src/NodeCheckers.php",
             "src/NodeVisitor.php",
             "src/Output.php",
-            "src/Parser.php",
             "src/Runner.php"
         ]
     },

@@ -1,29 +1,25 @@
 <?php
-
 namespace HexletPsrLinter;
 
 use HexletPsrLinter\Checkers\FunctionChecker;
 use HexletPsrLinter\Checkers\MethodChecker;
 use PhpParser\NodeTraverser;
+use PhpParser\ParserFactory;
 
-class Linter
+function lint(string $code)
 {
-
-    public function __construct()
-    {
-        $checkers = new NodeCheckers();
-        $this->visitor = new NodeVisitor($checkers->get());
-        $this->traverser = new NodeTraverser();
-        $this->traverser->addVisitor($this->visitor);
+    $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+    $traverser = new NodeTraverser();
+    $visitor = new NodeVisitor([
+        new FunctionChecker(),
+        new MethodChecker()
+    ]);
+    $traverser->addVisitor($visitor);
+    try {
+        $stmts = $parser->parse($code);
+        $traverser->traverse($stmts);
+    } catch (\PhpParser\Error $e) {
+        throw new \Exception($e->getMessage(), $e->getCode());
     }
-
-    public function sniff($code)
-    {
-        $this->traverser->traverse(parse($code));
-    }
-
-    public function getResult()
-    {
-        return $this->visitor->getResult();
-    }
+    return $visitor->getResult();
 }

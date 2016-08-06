@@ -9,10 +9,10 @@ function run(string $path)
         throw new \Exception("No files there", 1);
     }
 
-    $linter = new Linter();
+    $result = [];
     foreach ($files as $file) {
         $code = read($file);
-        $linter->sniff($code);
+        $result = array_merge($result, lint($code));
     }
-    return $linter->getResult();
+    return $result;
 }
