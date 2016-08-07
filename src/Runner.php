@@ -10,9 +10,10 @@ function run(string $path)
     }
 
     $result = [];
-    foreach ($files as $file) {
+    array_map(function ($file) use (&$result) {
         $code = read($file);
         $result = array_merge($result, lint($code));
-    }
+    }, $files);
+
     return $result;
 }

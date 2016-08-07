@@ -21,7 +21,7 @@ function getFiles($path) : array
             }
         }
     } else {
-        if (is_file($path)) {
+        if (is_file($path) && pathinfo($path, PATHINFO_EXTENSION) == 'php') {
             $targetFiles[] = $path;
         }
     }
