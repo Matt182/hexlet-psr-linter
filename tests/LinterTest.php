@@ -13,13 +13,16 @@ class LinterTest extends \PHPUnit_Framework_TestCase
         $structure = array(
                 'innerFixture' => array(
                     'innerTest.php' => '<?php
-                    function InnerWrong() {} ?>'),
+                    function InnerWrong() {}
+                    $not_camel;    ?>'),
                 'test.php' => '<?php
                     function re_qwe() {}
                     function ok() {}
                     class Test {
+
                         function Wrong() {}
                         function ok() {}
+                        private $camel;
                     }?>',
             );
             vfsStream::create($structure, $this->root);
@@ -33,7 +36,8 @@ class LinterTest extends \PHPUnit_Framework_TestCase
         $path = __DIR__.'/fixtures';
         $result = run($rootPath);
         $this->assertEquals(
-            [[2, 'function', 'InnerWrong'], [2,'function','re_qwe'], [5,'method','Wrong']],
+            [[2, 'function', 'InnerWrong'], [3, 'variable', 'not_camel'],
+            [2,'function','re_qwe'], [6,'method','Wrong']],
             $result
         );
     }

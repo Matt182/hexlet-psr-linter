@@ -3,6 +3,7 @@ namespace HexletPsrLinter;
 
 use HexletPsrLinter\Checkers\FunctionChecker;
 use HexletPsrLinter\Checkers\MethodChecker;
+use HexletPsrLinter\Checkers\VariableChecker;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
 
@@ -12,7 +13,8 @@ function lint(string $code)
     $traverser = new NodeTraverser();
     $visitor = new NodeVisitor([
         new FunctionChecker(),
-        new MethodChecker()
+        new MethodChecker(),
+        new VariableChecker()
     ]);
     $traverser->addVisitor($visitor);
     try {
