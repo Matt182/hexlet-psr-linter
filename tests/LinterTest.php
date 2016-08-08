@@ -10,21 +10,22 @@ class LinterTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->root = vfsStream::setup('root');
-        $structure = array(
-                'innerFixture' => array(
+        $structure = [
+                'innerFixture' => [
                     'innerTest.php' => '<?php
                     function InnerWrong() {}
-                    $not_camel;    ?>'),
+                    $not_camel;    ?>'],
                 'test.php' => '<?php
                     function re_qwe() {}
                     function ok() {}
                     class Test {
-
                         function Wrong() {}
                         function ok() {}
                         private $camel;
+                        private $WrongVar;
                     }?>',
-            );
+                'emptyDir' => []
+            ];
             vfsStream::create($structure, $this->root);
     }
 
@@ -32,13 +33,27 @@ class LinterTest extends \PHPUnit_Framework_TestCase
     {
         $rootPath = vfsStream::url($this->root->getName());
 
-
-        $path = __DIR__.'/fixtures';
         $result = run($rootPath);
         $this->assertEquals(
             [[2, 'function', 'InnerWrong'], [3, 'variable', 'not_camel'],
-            [2,'function','re_qwe'], [6,'method','Wrong']],
+            [2,'function','re_qwe'], [5,'method','Wrong']],
             $result
         );
+    }
+
+    public function testNoFilesExeption()
+    {
+        $path = vfsStream::url("root/emptyDir");
+
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage("No files there");
+        run($path);
+    }
+
+    public function testParseError()
+    {
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage("Syntax error, unexpected T_VARIABLE on line 1");
+        lint('<?php $no $noo ?>');
     }
 }
