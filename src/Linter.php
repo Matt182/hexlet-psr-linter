@@ -4,6 +4,8 @@ namespace HexletPsrLinter;
 use HexletPsrLinter\Checkers\FunctionChecker;
 use HexletPsrLinter\Checkers\MethodChecker;
 use HexletPsrLinter\Checkers\VariableChecker;
+use HexletPsrLinter\Checkers\ParameterChecker;
+use HexletPsrLinter\Checkers\PropertyChecker;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
 
@@ -14,7 +16,9 @@ function lint(string $code)
     $visitor = new NodeVisitor([
         new FunctionChecker(),
         new MethodChecker(),
-        new VariableChecker()
+        new VariableChecker(),
+        new ParameterChecker(),
+        new PropertyChecker()
     ]);
     $traverser->addVisitor($visitor);
     try {

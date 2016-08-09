@@ -20,7 +20,7 @@ class LinterTest extends \PHPUnit_Framework_TestCase
                     function ok() {}
                     class Test {
                         function Wrong() {}
-                        function ok() {}
+                        function ok($wrong_par) {}
                         private $camel;
                         private $WrongVar;
                     }?>',
@@ -36,7 +36,8 @@ class LinterTest extends \PHPUnit_Framework_TestCase
         $result = run($rootPath);
         $this->assertEquals(
             [[2, 'function', 'InnerWrong'], [3, 'variable', 'not_camel'],
-            [2,'function','re_qwe'], [5,'method','Wrong']],
+            [2,'function','re_qwe'], [5,'method','Wrong'],
+            [6, 'parameter', 'wrong_par'], [8, 'property', 'WrongVar']],
             $result
         );
     }
